@@ -1,0 +1,56 @@
+<!-- Ensimmäinen versio todos-templaatista. Käytän todennäköisesti todos.component.v2 ja css.v2 lopullisessa versiossa -->
+<div class="sticky">
+  <!-- Komponentti app-add -->
+  <app-add></app-add>
+
+  <!-- Edit-lomake -->
+  <form *ngIf="showEdit" class="container">
+    <div class="mb-2">
+      <label for="otsikko" class="form-label">Otsikko</label>
+      <input type="text" class="form-control" id="otsikko" name="otsikko" [(ngModel)]="otsikko" ngModel>
+    </div>
+    <div class="mb-2">
+      <label for="kuvaus" class="form-label">Kuvaus</label>
+      <input type="text" class="form-control" id="kuvaus" name="kuvaus" [(ngModel)]="kuvaus" ngModel>
+    </div>
+    <div class="mb-2">
+      <label for="erapv" class="form-label">Eräpäivä</label>
+      <input type="text" class="form-control" id="erapv" name="erapv" [(ngModel)]="erapv" ngModel>
+    </div>
+    <button type="button" class="btn btn-primary tallenna" (click)="tallennaMuokattu()">Tallenna muutokset</button>
+  </form>
+
+  <!-- Navigaatio, jossa kaksi nappia, Todos ja Done. Näillä hallitaan näytettävää sisältöä -->
+  <div class="navi d-flex mt-2">
+    <button type="button" class="btn btn-primary w-100 visibility-button reuna" (click)="todosVisibility()"
+      [ngClass]="{ 'not-active' : showTodos === false }">Tehtävät</button>
+    <button type="button" class="btn btn-primary w-100 visibility-button" (click)="doneVisibility()"
+      [ngClass]="{ 'not-active' : showDone === false }">Valmiit</button>
+  </div>
+</div>
+
+<!-- Done todos -->
+<div *ngIf="showDone" class="done">
+  <div class="todos" *ngFor="let todo of done">
+    <h4>{{todo.otsikko}}</h4>
+    <p>{{todo.kuvaus}}</p>
+    <p>Tehtävä viimeistään {{todo.erapv}}</p>
+  </div>
+</div>
+
+<!-- Todos -->
+<div *ngIf="showTodos">
+  <div class="todos" *ngFor="let todo of todos">
+    <h4>{{todo.otsikko}}</h4>
+    <p>{{todo.kuvaus}}</p>
+    <p>Tehtävä viimeistään {{todo.erapv}}</p>
+    <div class="napit">
+      <button type="button" class="btn btn-success" (click)="valmis(todo)">Valmis</button>
+      <button type="button" class="btn btn-outline-primary" (click)="muokkaa(todo)">Muokkaa</button>
+      <button type="button" class="btn btn-outline-danger" (click)="poista(todo)">Poista</button>
+    </div>
+  </div>
+</div>
+
+<!-- Logout -->
+<button type="button" class="btn btn-dark w-100 logout-button" (click)="logout()">Kirjaudu ulos</button>

@@ -1,0 +1,80 @@
+<div class="wrap">
+  <div class="sticky">
+    <!-- Komponentti app-add -->
+    <app-add></app-add>
+
+    <!-- Edit-lomake -->
+    <form *ngIf="showEdit" class="p-2">
+      <div class="mb-2">
+        <label for="otsikko" class="form-label">Otsikko</label>
+        <input type="text" class="form-control" id="otsikko" name="otsikko" [(ngModel)]="otsikko" ngModel>
+      </div>
+      <div class="mb-2">
+        <label for="kuvaus" class="form-label">Kuvaus</label>
+        <input type="text" class="form-control" id="kuvaus" name="kuvaus" [(ngModel)]="kuvaus" ngModel>
+      </div>
+      <div class="mb-2">
+        <label for="erapv" class="form-label">Eräpäivä</label>
+        <input type="date" class="form-control" id="erapv" placeholder="Kirjoita eräpäivä" name="erapv"
+          [(ngModel)]="erapv" ngModel>
+      </div>
+      <button type="button" class="btn btn-primary tallenna me-2" (click)="tallennaMuokattu()">Tallenna
+        muutokset</button>
+      <button type="button" class="btn btn-secondary sulje" (click)="editVisibility()">Sulje</button>
+    </form>
+  </div>
+
+  <!-- Done todos -->
+  <div *ngIf="showDone" class="done">
+    <div class="todos" *ngFor="let todo of done">
+      <h4>{{todo.otsikko}}</h4>
+      <p>{{todo.kuvaus}}</p>
+      <p>Tehtävä viimeistään {{todo.erapv}}</p>
+    </div>
+  </div>
+
+  <!-- Todos -->
+  <div *ngIf="showTodos">
+    <div class="todos" *ngFor="let todo of todos">
+      <h4>{{todo.otsikko}}</h4>
+      <p>{{todo.kuvaus}}</p>
+      <p>Tehtävä viimeistään <strong>{{todo.erapv}}</strong></p>
+      <div class="napit">
+        <button type="button" class="btn btn-success" (click)="valmis(todo)">Valmis</button>
+        <button type="button" class="btn btn-outline-primary" (click)="muokkaa(todo)">Muokkaa</button>
+        <button type="button" class="btn btn-outline-danger" (click)="poista(todo)">Poista</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ALAPALKIN NAVIGAATIO -->
+<div class="navigaatio">
+  <button type="button" class="btn btn-primary w-100 visibility-button reuna" (click)="todosVisibility()"
+    [ngClass]="{ 'not-active' : showTodos === false }">
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list-task"
+      viewBox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z" />
+      <path
+        d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z" />
+      <path fill-rule="evenodd"
+        d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z" />
+    </svg><br /><span>Tehtävät</span>
+
+  </button>
+  <button type="button" class="btn btn-primary w-100 visibility-button reuna" (click)="doneVisibility()"
+    [ngClass]="{ 'not-active' : showDone === false }"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+      fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+      <path
+        d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+    </svg><br /><span>Valmiit</span></button>
+  <button type="button" class="btn btn-primary w-100 logout-button not-active" (click)="logout()"><svg
+      xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-door-closed"
+      viewBox="0 0 16 16">
+      <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z" />
+      <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z" />
+    </svg><br /><span>Kirjaudu ulos</span></button>
+</div>

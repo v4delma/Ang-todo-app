@@ -1,0 +1,25 @@
+<div class="center">
+  <div class="container">
+    <form>
+      <div class="mb-3">
+        <label for="email" class="form-label">Sähköposti</label>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Salasana</label>
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password">
+      </div>
+      <div *ngIf="invalidCredentials">
+        <p class="invalid-credentials">{{invalidCredentialsMessage}}</p>
+      </div>
+      <div class="napit">
+        <div class="d-flex justify-content-center mb-2">
+          <button type="button" class="btn btn-primary w-100" (click)="login()">Kirjaudu sisään</button>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-outline-primary w-100" (click)="register()">Rekisteröidy</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

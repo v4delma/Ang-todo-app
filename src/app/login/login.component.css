@@ -1,0 +1,27 @@
+body {
+  background-image: url('https://thumbs.dreamstime.com/b/todo-list-seamless-pattern-universal-background-66678083.jpg');
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  max-width: 400px;
+}
+
+label {
+  font-weight: bold;
+}
+
+button {
+  font-weight: bold;
+}
+
+.invalid-credentials {
+  color: red;
+}

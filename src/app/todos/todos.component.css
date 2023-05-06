@@ -1,0 +1,50 @@
+/* Ensimmäinen versio */
+
+.todos {
+  /* background-color: rgba(224, 255, 255, 0.701); */
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.visibility-button,
+.logout-button {
+  border-radius: 0;
+  padding: 10px;
+  color: white;
+  font-weight: 500;
+}
+
+.napit {
+  display: flex;
+  gap: 10px;
+}
+
+h4 {
+  margin-bottom: 0px;
+}
+
+.tallenna {
+  margin-bottom: 10px;
+}
+
+.reuna {
+  margin-right: 8px;
+}
+
+.not-active {
+  opacity: 85%;
+  font-weight: 400;
+  color: black;
+}
+
+.logout-button {
+  position: sticky;
+  bottom: 0px;
+}
+
+.sticky {
+  background-color: white;
+  position: sticky;
+  top: 0px;
+}
